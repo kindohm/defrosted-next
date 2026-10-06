@@ -1,49 +1,39 @@
 import type { Metadata } from "next";
 
+import { site } from "../lib/site";
 import "./globals.css";
 
-export const siteUrl = "https://ismariahcareydefrosted.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Is Mariah Carey defrosted?",
-  description:
-    "Tracking the seasonal thaw cycle of Mariah Carey with reckless scientific curiosity.",
-  keywords: [
-    "Mariah Carey",
-    "Christmas",
-    "defrosted",
-    "holiday season",
-    "internet joke",
-  ],
-  authors: [{ name: "Someone with too much time in late October" }],
-  alternates: {
-    canonical: "/",
+  metadataBase: new URL(site.url),
+  title: site.name,
+  description: site.description,
+  applicationName: site.name,
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { "max-image-preview": "large" },
   },
   openGraph: {
-    title: "Is Mariah Carey defrosted?",
-    description:
-      "Tracking the seasonal thaw cycle of Mariah Carey with reckless scientific curiosity.",
+    title: site.name,
+    description: site.description,
     type: "website",
+    locale: "en_US",
     url: "/",
-    siteName: "Is Mariah Carey defrosted?",
+    siteName: site.name,
   },
   twitter: {
-    card: "summary",
-    title: "Is Mariah Carey defrosted?",
-    description:
-      "Tracking the seasonal thaw cycle of Mariah Carey with reckless scientific curiosity.",
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+    images: [{ url: "/opengraph-image", alt: site.name }],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
+  <html lang="en">
+    <body>{children}</body>
+  </html>
+);
+
+export default RootLayout;

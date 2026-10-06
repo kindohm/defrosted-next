@@ -1,14 +1,9 @@
 import type { MetadataRoute } from "next";
 
-import { siteUrl } from "./layout";
+import { site } from "../lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: `${siteUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
-  ];
-}
+const sitemap = (): MetadataRoute.Sitemap => [
+  { url: `${site.url}/`, changeFrequency: "daily" },
+];
+
+export default sitemap;
